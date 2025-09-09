@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingeniero Civil - Portafolio Profesional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .card-content {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .tool-price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .tool-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tool-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-item:hover .skill-icon {
+            -webkit-text-fill-color: white;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0.5rem;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Ingeniero Civil</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#herramientas">Herramientas</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Ingeniero Civil Especializado</h1>
+            <p>Experto en Revit | Estructuras • MEP • Arquitectura | Herramientas de Cálculo</p>
+            <a href="#portafolio" class="cta-button">Ver Portafolio</a>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portafolio" class="section">
+        <div class="container">
+            <h2 class="section-title">Portafolio de Proyectos</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="card-header">
+                        <div class="card-icon">🏗️</div>
+                        <div>
+                            <div class="card-title">Revit Estructuras</div>
+                            <div class="card-subtitle">Modelado BIM Estructural</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Desarrollo de modelos estructurales complejos en Revit, incluyendo análisis de cargas, diseño de elementos de hormigón y acero, y documentación técnica completa.</p>
+                        <br>
+                        <strong>Proyectos destacados:</strong>
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Edificio residencial de 15 pisos</li>
+                            <li>Centro comercial con luces grandes</li>
+                            <li>Puente peatonal de 80m</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-header">
+                        <div class="card-icon">⚡</div>
+                        <div>
+                            <div class="card-title">Revit MEP</div>
+                            <div class="card-subtitle">Instalaciones MEP</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Diseño integral de sistemas MEP (Mecánicos, Eléctricos y Plomería) con coordinación 3D, detección de interferencias y optimización de recorridos.</p>
+                        <br>
+                        <strong>Especialidades:</strong>
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Sistemas HVAC</li>
+                            <li>Instalaciones eléctricas</li>
+                            <li>Redes sanitarias y pluviales</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-header">
+                        <div class="card-icon">🏛️</div>
+                        <div>
+                            <div class="card-title">Revit Arquitectura</div>
+                            <div class="card-subtitle">Modelado Arquitectónico</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Creación de modelos arquitectónicos detallados con familias personalizadas, renderizaciones fotorrealistas y documentación ejecutiva completa.</p>
+                        <br>
+                        <strong>Servicios incluidos:</strong>
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Modelado 3D paramétrico</li>
+                            <li>Planos ejecutivos</li>
+                            <li>Renders y visualizaciones</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔧</div>
+                        <div>
+                            <div class="card-title">Coordinación BIM</div>
+                            <div class="card-subtitle">Gestión de Proyectos</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>Coordinación multidisciplinaria de proyectos BIM, detección de interferencias, gestión de modelos federados y control de calidad.</p>
+                        <br>
+                        <strong>Herramientas utilizadas:</strong>
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Navisworks Manage</li>
+                            <li>BIM 360 / ACC</li>
+                            <li>Solibri Model Checker</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="herramientas" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Herramientas de Cálculo</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666; font-size: 1.1rem;">
+                Hojas de cálculo especializadas y herramientas desarrolladas para optimizar el trabajo de ingeniería
+            </p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">⭕</div>
+                    <div class="tool-title">Círculo de Mohr</div>
+                    <div class="tool-price">$15</div>
+                    <p>Hoja de Excel para cálculo automático del círculo de Mohr, análisis de esfuerzos principales y ángulos críticos.</p>
+                    <button class="tool-button" onclick="showToolDetails('mohr')">Ver Detalles</button>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <div class="tool-title">Análisis de Vigas</div>
+                    <div class="tool-price">$20</div>
+                    <p>Calculadora avanzada para vigas simples y continuas con diagramas automáticos de momentos y cortantes.</p>
+                    <button class="tool-button" onclick="showToolDetails('vigas')">Ver Detalles</button>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🏗️</div>
+                    <div class="tool-title">Diseño de Columnas</div>
+                    <div class="tool-price">$25</div>
+                    <p>Herramienta completa para diseño de columnas de hormigón armado según ACI-318. Incluye gráficos de interacción.</p>
+                    <button class="tool-button" onclick="showToolDetails('columnas')">Ver Detalles</button>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌊</div>
+                    <div class="tool-title">Hidráulica de Canales</div>
+                    <div class="tool-price">$18</div>
+                    <p>Cálculos hidráulicos para canales abiertos, flujo uniforme y gradualmente variado con gráficos interactivos.</p>
+                    <button class="tool-button" onclick="showToolDetails('hidraulica')">Ver Detalles</button>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📐</div>
+                    <div class="tool-title">Topografía Digital</div>
+                    <div class="tool-price">$22</div>
+                    <p>Procesamiento de datos topográficos, cálculo de áreas, volúmenes y generación automática de curvas de nivel.</p>
+                    <button class="tool-button" onclick="showToolDetails('topografia')">Ver Detalles</button>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🎯</div>
+                    <div class="tool-title">Pack Completo</div>
+                    <div class="tool-price">$75</div>
+                    <p>Todas las herramientas incluidas con descuento especial. Incluye actualizaciones gratuitas por 1 año.</p>
+                    <button class="tool-button" onclick="showToolDetails('pack')">¡Mejor Oferta!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="section">
+        <div class="container">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-icon">🏗️</div>
+                    <h3>Software BIM</h3>
+                    <p>Revit, Navisworks, BIM 360, Tekla Structures, Civil 3D</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">📐</div>
+                    <h3>Análisis Estructural</h3>
+                    <p>SAP2000, ETABS, Robot Structural, SAFE, CYPECAD</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">📊</div>
+                    <h3>Herramientas Office</h3>
+                    <p>Excel Avanzado, VBA, Power BI, Project, Visio</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">🎨</div>
+                    <h3>Diseño y CAD</h3>
+                    <p>AutoCAD, 3ds Max, SketchUp, Lumion, V-Ray</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programación</h3>
+                    <p>Python, Dynamo, C#, HTML/CSS, JavaScript</p>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-icon">📋</div>
+                    <h3>Gestión de Proyectos</h3>
+                    <p>Metodología BIM, Lean Construction, PMI, Scrum</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title" style="color: white;">¡Trabajemos Juntos!</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    ¿Necesitas un ingeniero civil con experiencia en BIM y herramientas especializadas?
+                </p>
+                <a href="mailto:tu-email@gmail.com" class="contact-button">📧 Enviar Email</a>
+                <a href="https://linkedin.com/in/tu-perfil" class="contact-button">💼 LinkedIn</a>
+                <a href="https://wa.me/593999999999" class="contact-button">📱 WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Tool details function
+        function showToolDetails(tool) {
+            const details = {
+                mohr: {
+                    title: 'Círculo de Mohr - Calculadora Excel',
+                    features: [
+                        'Cálculo automático de esfuerzos principales',
+                        'Gráfico interactivo del círculo de Mohr',
+                        'Determinación de ángulos críticos',
+                        'Análisis bidimensional y tridimensional',
+                        'Plantillas predefinidas para diferentes casos'
+                    ]
+                },
+                vigas: {
+                    title: 'Análisis de Vigas - Herramienta Completa',
+                    features: [
+                        'Vigas simplemente apoyadas y continuas',
+                        'Diagramas automáticos de momento y cortante',
+                        'Cálculo de deflexiones',
+                        'Múltiples tipos de cargas',
+                        'Reportes automáticos en PDF'
+                    ]
+                },
+                columnas: {
+                    title: 'Diseño de Columnas - ACI 318',
+                    features: [
+                        'Diseño según código ACI-318',
+                        'Gráficos de interacción P-M',
+                        'Cálculo de refuerzo longitudinal y transversal',
+                        'Verificación por cortante',
+                        'Documentación técnica completa'
+                    ]
+                },
+                hidraulica: {
+                    title: 'Hidráulica de Canales',
+                    features: [
+                        'Flujo uniforme y gradualmente variado',
+                        'Cálculo de profundidades críticas',
+                        'Análisis de diferentes secciones',
+                        'Gráficos de perfiles hidráulicos',
+                        'Exportación de resultados'
+                    ]
+                },
+                topografia: {
+                    title: 'Topografía Digital',
+                    features: [
+                        'Procesamiento de coordenadas',
+                        'Cálculo automático de áreas y perímetros',
+                        'Generación de curvas de nivel',
+                        'Cálculo de volúmenes de tierra',
+                        'Integración con Google Earth'
+                    ]
+                },
+                pack: {
+                    title: 'Pack Completo - Todas las Herramientas',
+                    features: [
+                        'Todas las 5 herramientas incluidas',
+                        'Descuento del 25%',
+                        'Actualizaciones gratuitas por 1 año',
+                        'Soporte técnico prioritario',
+                        'Videos tutoriales exclusivos'
+                    ]
+                }
+            };
+
+            const toolData = details[tool];
+            const featuresList = toolData.features.map(f => `<li>✅ ${f}</li>`).join('');
+            
+            alert(`${toolData.title}\n\nCaracterísticas principales:\n${toolData.features.map(f => `• ${f}`).join('\n')}\n\n¡Contacta conmigo para obtener esta herramienta!`);
+        }
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.portfolio-card, .tool-card, .skill-item');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.portfolio-card, .tool-card, .skill-item');
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+        });
+    </script>
+</body>
+</html>
