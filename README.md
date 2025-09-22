@@ -1,6 +1,5 @@
 Hola esta es una página en la que publicare productos, servicios y cosas de mi interes
 servira como una especie de portafólio 
-Soy Wilson Lema Ingeniero Civil
 
 ¡Bienvenido a mi portafolio profesional! 
 Soy Ingeniero Civil con interes en modeladoo bim construcción y diseño estrructural ademas de un gusto especial por el desarrollo de software.
